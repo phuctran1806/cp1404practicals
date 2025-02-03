@@ -2,6 +2,7 @@ MENU = """C - Convert Celsius to Fahrenheit
 F - Convert Fahrenheit to Celsius
 Q - Quit"""
 def main():
+    """A program that convert temperatures from Celsius to Fahrenheit and vice versa"""
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
