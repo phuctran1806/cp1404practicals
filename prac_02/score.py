@@ -11,7 +11,7 @@ def main():
     print(f"From the random score ({random_score}), the random result is {random_result}.")
 
 def determine_result(score):
-    """Get the result based on score."""
+    """Determine the result based on score."""
     if score < 0 or score > 100:
         return "Invalid score"
     if score >= 90:
