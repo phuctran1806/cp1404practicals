@@ -1,4 +1,4 @@
-from xmlrpc.client import MAXINT
+from score import determine_result
 
 MENU = ("(G)et a valid score (must be 0-100 inclusive)"
         "\n(P)rint result"
@@ -12,14 +12,16 @@ def main():
     choice = input(MENU)
     while choice != "Q":
         if choice == "G":
-            pass
+            score = get_valid_score()
         elif choice == "P":
-            pass
+            result = determine_result(score)
+            print(f"Based on your score ({score}), your result is {result}.")
         elif choice == "S":
             pass
         else:
             print("Invalid choice")
         choice = input(MENU)
+
 
 def get_valid_score():
     """Get the valid score."""
