@@ -9,6 +9,7 @@ MINIMUM_SCORE = 0
 MAXIMUM_SCORE = 100
 
 def main():
+    score = get_valid_score()
     choice = input(MENU)
     while choice != "Q":
         if choice == "G":
@@ -17,7 +18,7 @@ def main():
             result = determine_result(score)
             print(f"Based on your score ({score}), your result is {result}.")
         elif choice == "S":
-            pass
+            show_stars(score)
         else:
             print("Invalid choice")
         choice = input(MENU)
@@ -31,5 +32,9 @@ def get_valid_score():
         score = int(input("Enter score: "))
     return score
 
+
+def show_stars(number_of_stars):
+    """Print a number of stars."""
+    print("*" * number_of_stars)
 
 main()
