@@ -9,6 +9,7 @@ MINIMUM_SCORE = 0
 MAXIMUM_SCORE = 100
 
 def main():
+    """A menu program that get a valid score, print the result, and show a number of stars"""
     score = get_valid_score()
     choice = input(MENU)
     while choice != "Q":
@@ -22,6 +23,7 @@ def main():
         else:
             print("Invalid choice")
         choice = input(MENU)
+    print("Thank you and goodbye!")
 
 
 def get_valid_score():
