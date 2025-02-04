@@ -1,5 +1,3 @@
-from score import determine_result
-
 MENU = ("(G)et a valid score (must be 0-100 inclusive)"
         "\n(P)rint result"
         "\n(S)how stars"
@@ -38,5 +36,16 @@ def get_valid_score():
 def show_stars(number_of_stars):
     """Print a number of stars."""
     print("*" * number_of_stars)
+
+
+def determine_result(score):
+    """Determine the result based on score."""
+    if score < 0 or score > 100:
+        return "Invalid score"
+    if score >= 90:
+        return "Excellent"
+    if score >= 50:
+        return "Pass"
+    return "Bad"
 
 main()
