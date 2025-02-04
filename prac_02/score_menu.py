@@ -2,14 +2,14 @@ MENU = ("(G)et a valid score (must be 0-100 inclusive)"
         "\n(P)rint result"
         "\n(S)how stars"
         "\n(Q)uit"
-        "\n>>>")
+        "\n>>> ")
 MINIMUM_SCORE = 0
 MAXIMUM_SCORE = 100
 
 def main():
     """A menu program that get a valid score, print the result, and show a number of stars"""
     score = get_valid_score()
-    choice = input(MENU)
+    choice = input(MENU).strip().upper()
     while choice != "Q":
         if choice == "G":
             score = get_valid_score()
@@ -20,7 +20,7 @@ def main():
             show_stars(score)
         else:
             print("Invalid choice")
-        choice = input(MENU)
+        choice = input(MENU).strip().upper()
     print("Thank you and goodbye!")
 
 
