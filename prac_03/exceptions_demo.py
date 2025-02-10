@@ -2,9 +2,9 @@
 CP1404/CP5632 - Practical
 Answer the following questions:
 1. When will a ValueError occur?
-- The ValueError will occur when the numerator or the denominator is not a numeric value.
+- The ValueError will occur when the numerator or the denominator is not input as an integer.
 2. When will a ZeroDivisionError occur?
-- The ZeroDivisionError will occur when the denominator is zero.
+- The ZeroDivisionError will occur when the denominator is input as zero.
 3. Could you change the code to avoid the possibility of a ZeroDivisionError?
 - Yes I can.
 """
