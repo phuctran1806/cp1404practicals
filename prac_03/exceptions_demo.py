@@ -13,7 +13,7 @@ try:
     numerator = int(input("Enter the numerator: "))
     denominator = int(input("Enter the denominator: "))
     while denominator == 0:
-        print("The denominator cannot be zero.")
+        print("Cannot divide by zero")
         denominator = int(input("Enter the denominator: "))
     fraction = numerator / denominator
     print(fraction)
