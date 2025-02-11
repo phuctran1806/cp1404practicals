@@ -6,7 +6,7 @@ out_file_name.close()
 
 # 2
 in_file_name = open(f"{name}.txt", "r")
-in_file_name_content = in_file_name.readline()
+in_file_name_content = in_file_name.read()
 print(f"Hi {in_file_name_content.strip()}!")
 in_file_name.close()
 
