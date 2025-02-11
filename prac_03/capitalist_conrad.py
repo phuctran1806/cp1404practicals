@@ -14,7 +14,7 @@ MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 1
 MAX_PRICE = 100
 INITIAL_PRICE = 10.0
-FILENAME = "capitalist_conrad.txt"
+FILENAME = "stock_prices.txt"
 
 number_of_days = 1
 price = INITIAL_PRICE
