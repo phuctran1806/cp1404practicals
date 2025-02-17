@@ -9,6 +9,7 @@ FILENAME = "subject_data.txt"
 def main():
     data = load_data()
     print(data)
+    print_data(data)
 
 
 def load_data():
@@ -21,5 +22,8 @@ def load_data():
             data.append(parts)
     return data
 
+def print_data(data):
+    for parts in data:
+        print(f"{parts[0]} is taught by {parts[1]:12} and has {parts[2]:3} students")
 
 main()
