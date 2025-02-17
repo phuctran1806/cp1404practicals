@@ -7,19 +7,20 @@ FILENAME = "subject_data.txt"
 
 
 def main():
+    """Load and display data."""
     data = load_data()
-    print(data)
     print_data(data)
-
 
 def load_data():
     """Read data from file formatted like: subject,lecturer,number of students."""
     data = []
-    with open(FILENAME) as input_file:
-        for line in input_file:
-            parts = line.split(',')
-            parts[2] = int(parts[2])
-            data.append(parts)
+    input_file = open(FILENAME)
+    for line in input_file:
+        line = line.strip()  # Remove the \n
+        parts = line.split(',')  # Separate the data into its parts
+        parts[2] = int(parts[2])
+        data.append(parts)
+    input_file.close()
     return data
 
 def print_data(data):
