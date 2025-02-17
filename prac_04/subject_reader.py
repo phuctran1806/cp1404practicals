@@ -24,7 +24,10 @@ def load_data():
 
 def print_data(data):
     """Display subject details."""
+    lecturer_width = max((len(parts[1]) for parts in data))
+    number_of_students_width = max((len(str(parts[2])) for parts in data))
+
     for parts in data:
-        print(f"{parts[0]} is taught by {parts[1]:12} and has {parts[2]:3} students")
+        print(f"{parts[0]} is taught by {parts[1]:{lecturer_width}} and has {parts[2]:{number_of_students_width}} students")
 
 main()
