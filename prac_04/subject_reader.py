@@ -23,6 +23,7 @@ def load_data():
     return data
 
 def print_data(data):
+    """Display subject details."""
     for parts in data:
         print(f"{parts[0]} is taught by {parts[1]:12} and has {parts[2]:3} students")
 
