@@ -17,6 +17,7 @@ def main():
 
 
 def print_report(incomes):
+    """Print report of incomes."""
     print("\nIncome Report\n-------------")
     total = 0
     income_width = max((len(str(income)) for income in incomes))
