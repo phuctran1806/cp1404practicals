@@ -3,8 +3,6 @@ Wimbledon
 Estimate: 30 minutes
 Actual: 40 minutes
 """
-import csv
-
 FILENAME = "wimbledon.csv"
 COUNTRY_INDEX = 1
 CHAMPION_INDEX = 2
