@@ -1,7 +1,7 @@
 """
 Emails
 Estimate: 15 minutes
-Actual: 10 minutes
+Actual: 15 minutes
 """
 ACCEPT_PROMPT = ["Y", ""]
 email_to_name = {}
