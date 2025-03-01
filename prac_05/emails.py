@@ -8,7 +8,7 @@ email_to_name = {}
 
 email = input("Email: ").strip()
 while email != "":
-    name = " ".join(email.split("@")[0].split(".")).title() # Extract the name from the email address
+    name = " ".join(email.split("@")[0].split(".")).title()  # Extract the name from the email address
     check_prompt = input(f"Is your name {name}? (Y/n) ").upper().strip()
     if check_prompt not in ACCEPT_PROMPT:
         name = input("Name: ").strip().title()
