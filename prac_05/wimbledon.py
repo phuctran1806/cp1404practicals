@@ -21,7 +21,7 @@ def display_result(champion_to_win_count, champion_countries):
     for champion, win_count in champion_to_win_count.items():
         print(champion, win_count)
 
-    print(f"\nThere are {len(champion_countries)} countries have won Wimbledon:")
+    print(f"\nThese {len(champion_countries)} countries have won Wimbledon:")
     print(", ".join(champion_countries))
 
 
