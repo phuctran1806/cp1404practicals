@@ -10,8 +10,19 @@ COUNTRY_INDEX = 1
 CHAMPION_INDEX = 2
 
 def main():
+    """Load, process, and display the data."""
     data = load_data(FILENAME)
-    champion_to_win_count, countries = process_data(data)
+    champion_to_win_count, champion_countries = process_data(data)
+    display_result(champion_to_win_count, champion_countries)
+
+def display_result(champion_to_win_count, champion_countries):
+    """Display all the champions with their win count, and the champion countries."""
+    print("Wimbledon Champions:")
+    for champion, win_count in champion_to_win_count.items():
+        print(champion, win_count)
+
+    print(f"\nThere are {len(champion_countries)} countries have won Wimbledon:")
+    print(", ".join(champion_countries))
 
 def process_data(data):
     """Store the champions associated with their win count, and the champion countries."""
