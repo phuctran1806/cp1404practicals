@@ -28,11 +28,11 @@ def display_result(champion_to_win_count, champion_countries):
 def process_data(data):
     """Store the champions associated with their win count, and the champion countries."""
     champion_to_win_count = {}
-    countries = set()
+    champion_countries = set()
     for row in data:
         champion_to_win_count[row[CHAMPION_INDEX]] = champion_to_win_count.get(row[CHAMPION_INDEX], 0) + 1
-        countries.add(row[COUNTRY_INDEX])
-    return champion_to_win_count, countries
+        champion_countries.add(row[COUNTRY_INDEX])
+    return champion_to_win_count, sorted(champion_countries)
 
 
 def load_data(filename):
