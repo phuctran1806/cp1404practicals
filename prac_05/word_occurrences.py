@@ -15,4 +15,3 @@ width = max((len(word) for word in word_to_count.keys()))
 
 for word, count in sorted(word_to_count.items(), key=itemgetter(0)):
     print(f"{word:{width}} : {count}")
-print()
