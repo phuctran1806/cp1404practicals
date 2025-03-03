@@ -1,7 +1,7 @@
 """
 Guitars! exercise
-Estimated time:
-Actual time:
+Estimated time: 45
+Actual time: 50
 """
 from datetime import datetime
 
