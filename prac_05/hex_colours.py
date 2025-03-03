@@ -21,4 +21,3 @@ while colour_name != "":
     except KeyError:
         print(f"{colour_name} is not a valid colour.")
     colour_name = input("Enter colour name: ").lower().strip()
-print()

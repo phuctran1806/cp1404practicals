@@ -47,4 +47,3 @@ def load_data(filename):
 
 
 main()
-print()
