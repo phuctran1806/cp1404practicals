@@ -5,7 +5,8 @@ Replace each `...` with your meaningful answer.
 
 ## What have you changed about your process in this subject based on your personal reflection?
 
-I learnt to make small milestones for every process by making small git commit after completing each step in the exercises.
+I learnt to make small milestones for every process by making small git commit after completing each step in the
+exercises.
 
 ## What do you still need to change in terms of your approach, application, time on task, attitude, etc.?
 
