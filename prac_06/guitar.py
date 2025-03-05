@@ -7,8 +7,10 @@ from datetime import datetime
 
 VINTAGE_THRESHOLD = 50
 
+
 class Guitar:
     """Represents a Guitar object."""
+
     def __init__(self, name="", year=0, cost=0):
         """Initialize a Guitar object."""
         self.name = name
@@ -25,4 +27,4 @@ class Guitar:
 
     def is_vintage(self):
         """Determine if the Guitar is vintage."""
-        return self.get_age() > VINTAGE_THRESHOLD
+        return self.get_age() >= VINTAGE_THRESHOLD
