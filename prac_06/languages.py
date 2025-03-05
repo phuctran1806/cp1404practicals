@@ -5,6 +5,7 @@ Actual time: 15
 """
 from prac_06.programming_language import ProgrammingLanguage
 
+
 def main():
     """Instantiate 3 programming languages and print the dynamically typed languages."""
     python = ProgrammingLanguage("Python", "Dynamic", True, 1991)
@@ -17,5 +18,6 @@ def main():
     for programming_language in programming_languages:
         if programming_language.is_dynamic():
             print(programming_language.name)
+
 
 main()
