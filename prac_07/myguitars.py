@@ -6,7 +6,9 @@ NAME_INDEX = 0
 YEAR_INDEX = 1
 COST_INDEX = 2
 
+
 def main():
+    """Load, add and save the guitars into a csv file."""
     guitars = load_guitars(FILENAME)
     guitars.sort()
     for guitar in guitars:
@@ -43,12 +45,10 @@ def load_guitars(filename):
 
 def save_guitars(filename, guitars):
     """Save a list of Guitar objects to a CSV file."""
-    print(type(guitars))
     with open(filename, 'w', newline="") as out_file:
         csvwriter = csv.writer(out_file)
         for guitar in guitars:
             csvwriter.writerow([guitar.name, guitar.year, guitar.cost])
-
 
 
 main()
