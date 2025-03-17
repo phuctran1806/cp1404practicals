@@ -7,6 +7,7 @@ COST_INDEX = 2
 
 def main():
     guitars = load_guitars(FILENAME)
+    guitars.sort()
     for guitar in guitars:
         print(guitar)
 
