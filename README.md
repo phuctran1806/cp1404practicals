@@ -12,6 +12,7 @@ This repository contains all of my Python practicals from week 1 to 10.
 - Simplicity is also key, don't make the code too complex.
 
 [Programming Patterns page](https://github.com/CP1404/Starter/wiki/Programming-Patterns)
+
 [CP1404 Practicals instructions repo](https://github.com/CP1404/Practicals)
 
 Practical work for IT@JCU CP1404
