@@ -20,6 +20,26 @@ DEFAULT_FILE = "projects.txt"
 def main():
     print("Welcome to Pythonic Project Management")
     project_objects = load_projects(DEFAULT_FILE)
+    load_filename_input = ""
+
+    menu_choice = input(MENU).upper().strip()
+    while menu_choice != "Q":
+        if menu_choice == "L":
+            print("Load")
+        elif menu_choice == "S":
+            print("Save")
+        elif menu_choice == "D":
+            print("Display")
+        elif menu_choice == "F":
+            print("Filter")
+        elif menu_choice == "A":
+            print("Add")
+        elif menu_choice == "U":
+            print("Update")
+        else:
+            print("Invalid choice")
+        menu_choice = input(MENU).upper().strip()
+
 
 
 
