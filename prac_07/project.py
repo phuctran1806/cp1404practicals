@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Project:
     """Represent a Project object."""
     def __init__(self, name, start_date, priority, cost_estimate, completion_percentage):
@@ -9,5 +11,5 @@ class Project:
 
     def __str__(self):
         """Represent a Project object as a string."""
-        return f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate:.2f}, completion: {self.completion_percentage}%"
+        return f"{self.name}, start: {datetime.strftime(self.start_date, "%d/%m/%Y")}, priority {self.priority}, estimate: ${self.cost_estimate:.2f}, completion: {self.completion_percentage}%"
 
