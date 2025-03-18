@@ -20,8 +20,7 @@ DEFAULT_FILE = "projects.txt"
 def main():
     print("Welcome to Pythonic Project Management")
     project_objects = load_projects(DEFAULT_FILE)
-    for project in project_objects:
-        print(project)
+
 
 
 def load_projects(filename):
@@ -37,6 +36,7 @@ def load_projects(filename):
                 float(parts[3]),
                 int(parts[4]))
             project_objects.append(project)
+    print(f"Loaded {len(project_objects)} projects from {filename}")
     return project_objects
 
 
