@@ -5,6 +5,7 @@ Actual:
 """
 from datetime import datetime
 from project import Project
+from operator import attrgetter
 
 MENU = ("- (L)oad projects\n"
         "- (S)ave projects\n"
@@ -33,7 +34,7 @@ def main():
         elif menu_choice == "S":
             print("Save")
         elif menu_choice == "D":
-            print("Display")
+            display_projects(project_objects)
         elif menu_choice == "F":
             print("Filter")
         elif menu_choice == "A":
@@ -42,10 +43,7 @@ def main():
             print("Update")
         else:
             print("Invalid choice")
-        print(project_objects)
         menu_choice = input(MENU).upper().strip()
-
-
 
 
 def load_projects(filename):
@@ -64,6 +62,18 @@ def load_projects(filename):
     print(f"Loaded {len(project_objects)} projects from {filename}")
     return project_objects
 
+
+def display_projects(project_objects):
+    print("Incomplete projects:")
+    for incomplete_project_object in sorted(
+            [project_object for project_object in project_objects if project_object.completion_percentage < 100],
+            key=attrgetter("priority")):
+        print(f"  {incomplete_project_object}")
+    print("Completed projects:")
+    for completed_project_object in sorted(
+            [project_object for project_object in project_objects if project_object.completion_percentage == 100],
+            key=attrgetter("priority")):
+        print(f"  {completed_project_object}")
 
 if __name__ == "__main__":
     main()
