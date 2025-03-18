@@ -64,16 +64,20 @@ def load_projects(filename):
 
 
 def display_projects(project_objects):
+    incomplete_project_objects = []
+    completed_project_objects = []
+    for project in project_objects:
+        if project.completion_percentage == 100:
+            completed_project_objects.append(project)
+        else:
+            incomplete_project_objects.append(project)
+
     print("Incomplete projects:")
-    for incomplete_project_object in sorted(
-            [project_object for project_object in project_objects if project_object.completion_percentage < 100],
-            key=attrgetter("priority")):
-        print(f"  {incomplete_project_object}")
+    for incomplete_project in incomplete_project_objects:
+        print(f"  {incomplete_project}")
     print("Completed projects:")
-    for completed_project_object in sorted(
-            [project_object for project_object in project_objects if project_object.completion_percentage == 100],
-            key=attrgetter("priority")):
-        print(f"  {completed_project_object}")
+    for completed_project in completed_project_objects:
+        print(f"  {completed_project}")
 
 if __name__ == "__main__":
     main()
