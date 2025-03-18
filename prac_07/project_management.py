@@ -38,7 +38,7 @@ def main():
         elif menu_choice == "F":
             filter_projects_by_date(project_objects)
         elif menu_choice == "A":
-            print("Add")
+            add_project(project_objects)
         elif menu_choice == "U":
             print("Update")
         else:
@@ -87,6 +87,18 @@ def filter_projects_by_date(project_objects):
     date = datetime.strptime(input("Show projects that start after date (dd/mm/yy): "), "%d/%m/%Y")
     for project in sorted([project for project in project_objects if project.start_date >= date], key=attrgetter("start_date")):
         print(project)
+
+
+def add_project(project_objects):
+    """Add a new project."""
+    print("Let's add a new project.")
+    name = input("Name: ")
+    start_date = datetime.strptime(input("Start date: "), "%d/%m/%Y")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: "))
+    completion_percentage = int(input("Percent complete: "))
+    new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
+    project_objects.append(new_project)
 
 
 if __name__ == "__main__":
