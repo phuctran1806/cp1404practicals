@@ -14,18 +14,22 @@ MENU = ("- (L)oad projects\n"
         "- (U)pdate project\n"
         "- (Q)uit\n"
         ">>> ")
-DEFAULT_FILE = "projects.txt"
 
 
 def main():
     print("Welcome to Pythonic Project Management")
-    project_objects = load_projects(DEFAULT_FILE)
-    load_filename_input = ""
+
+    project_filename = "projects.txt"
+    project_objects = load_projects(project_filename)
 
     menu_choice = input(MENU).upper().strip()
     while menu_choice != "Q":
         if menu_choice == "L":
-            print("Load")
+            project_filename = input("Please enter a filename to load: ")
+            try:
+                project_objects = load_projects(project_filename)
+            except FileNotFoundError:
+                print(f"{project_filename} not found.")
         elif menu_choice == "S":
             print("Save")
         elif menu_choice == "D":
@@ -38,6 +42,7 @@ def main():
             print("Update")
         else:
             print("Invalid choice")
+        print(project_objects)
         menu_choice = input(MENU).upper().strip()
 
 
