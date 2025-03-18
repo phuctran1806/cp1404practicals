@@ -47,6 +47,7 @@ def main():
 
 
 def load_projects(filename):
+    """Load all the projects from a .txt file."""
     project_objects = []
     with open(filename) as in_file:
         in_file.readline()  # Skip the header
@@ -64,6 +65,7 @@ def load_projects(filename):
 
 
 def display_projects(project_objects):
+    """Display all the incomplete and completed projects."""
     incomplete_project_objects = []
     completed_project_objects = []
     for project in project_objects:
