@@ -36,7 +36,7 @@ def main():
         elif menu_choice == "D":
             display_projects(project_objects)
         elif menu_choice == "F":
-            print("Filter")
+            filter_projects_by_date(project_objects)
         elif menu_choice == "A":
             print("Add")
         elif menu_choice == "U":
@@ -55,7 +55,7 @@ def load_projects(filename):
             parts = line.split("\t")
             project = Project(
                 parts[0],
-                datetime.strptime(parts[1], "%d/%m/%Y").strftime("%d/%m/%Y"),
+                datetime.strptime(parts[1], "%d/%m/%Y"),
                 int(parts[2]),
                 float(parts[3]),
                 int(parts[4]))
@@ -80,6 +80,7 @@ def display_projects(project_objects):
     print("Completed projects:")
     for completed_project in completed_project_objects:
         print(f"  {completed_project}")
+
 
 if __name__ == "__main__":
     main()
