@@ -40,7 +40,7 @@ def main():
         elif menu_choice == "A":
             add_project(project_objects)
         elif menu_choice == "U":
-            print("Update")
+            update_project(project_objects)
         else:
             print("Invalid choice")
         menu_choice = input(MENU).upper().strip()
@@ -75,10 +75,10 @@ def display_projects(project_objects):
             incomplete_project_objects.append(project)
 
     print("Incomplete projects:")
-    for incomplete_project in incomplete_project_objects:
+    for incomplete_project in sorted(incomplete_project_objects, key=attrgetter("priority")):
         print(f"  {incomplete_project}")
     print("Completed projects:")
-    for completed_project in completed_project_objects:
+    for completed_project in sorted(completed_project_objects, key=attrgetter("priority")):
         print(f"  {completed_project}")
 
 
@@ -99,6 +99,25 @@ def add_project(project_objects):
     completion_percentage = int(input("Percent complete: "))
     new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
     project_objects.append(new_project)
+
+
+def get_updated_value(temporary_value, prompt):
+    """Prompt the user for a new value, returning the current value if input is blank."""
+    new_value = input(prompt).strip()
+    return int(new_value) if new_value else temporary_value
+
+
+def update_project(project_objects):
+    """Update a project."""
+    # Display all the projects with numbers.
+    for i, project in enumerate(project_objects):
+        print(f"{i} {project}")
+
+    chosen_project = project_objects[int(input("Project choice: "))]
+    print(chosen_project)
+
+    chosen_project.completion_percentage = get_updated_value(chosen_project.completion_percentage, "New Percentage: ")
+    chosen_project.priority = get_updated_value(chosen_project.priority, "New Priority: ")
 
 
 if __name__ == "__main__":
