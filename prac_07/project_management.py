@@ -111,9 +111,9 @@ def add_project(project_objects):
     print("Let's add a new project.")
     name = input("Name: ")
     start_date = datetime.strptime(input("Start date (dd/mm/yy): "), "%d/%m/%Y")
-    priority = int(input("Priority: "))
-    cost_estimate = float(input("Cost estimate: $"))
-    completion_percentage = int(input("Percent complete: "))
+    priority = get_valid_number("Priority: ", 0, float('inf'), int)
+    cost_estimate = get_valid_number("Cost estimate: ", 0, float('inf'), float)
+    completion_percentage = get_valid_number("Completion percentage: ", 0, 100, int)
     new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
     project_objects.append(new_project)
 
@@ -131,6 +131,19 @@ def update_project(project_objects):
         new_value = input(f"New {attribute.replace('_', ' ').title()}: ").strip()
         if new_value:
             setattr(chosen_project, attribute, int(new_value))
+
+
+def get_valid_number(prompt, minimum, maximum, number_type):
+    """Prompt the user for a valid number."""
+    while True:
+        try:
+            input_number = number_type(input(prompt).strip())
+            if input_number < minimum or input_number > maximum:
+                print("Invalid number")
+            else:
+                return input_number
+        except ValueError:
+            print(f"Invalid number")
 
 
 if __name__ == "__main__":
