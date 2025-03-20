@@ -110,10 +110,10 @@ def add_project(project_objects):
     """Add a new project."""
     print("Let's add a new project.")
     name = input("Name: ")
-    start_date = datetime.strptime(input("Start date (dd/mm/yy): "), "%d/%m/%Y")
+    start_date = get_valid_start_date()
     priority = get_valid_number("Priority: ", 0, float('inf'), int)
-    cost_estimate = get_valid_number("Cost estimate: ", 0, float('inf'), float)
-    completion_percentage = get_valid_number("Completion percentage: ", 0, 100, int)
+    cost_estimate = get_valid_number("Cost estimate: $", 0, float('inf'), float)
+    completion_percentage = get_valid_number("Percent complete: ", 0, 100, int)
     new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
     project_objects.append(new_project)
 
@@ -144,6 +144,17 @@ def get_valid_number(prompt, minimum, maximum, number_type):
                 return input_number
         except ValueError:
             print(f"Invalid number")
+
+
+def get_valid_start_date():
+    """Prompt the user for a valid start date."""
+    while True:
+        try:
+            start_date = datetime.strptime(input("Start date (dd/mm/yy): "), "%d/%m/%Y")
+            return start_date
+        except ValueError:
+            print("Invalid start date")
+
 
 
 if __name__ == "__main__":
