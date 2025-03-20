@@ -4,8 +4,8 @@ Estimate: 3 hours
 Actual:
 """
 from datetime import datetime
-from project import Project
 from operator import attrgetter
+from project import Project
 
 MENU = ("- (L)oad projects\n"
         "- (S)ave projects\n"
@@ -15,12 +15,19 @@ MENU = ("- (L)oad projects\n"
         "- (U)pdate project\n"
         "- (Q)uit\n"
         ">>> ")
-PROJECT_HEADERS = "Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n"
+PROJECT_HEADERS = [
+    "Name\t",
+    "Start Date\t",
+    "Priority\t",
+    "Cost Estimate\t",
+    "Completion Percentage\n"
+]
 DEFAULT_FILENAME = "projects.txt"
 ACCEPTING_PROMPTS = ["Y", "Yes"]
 
 
 def main():
+    """A project management program."""
     print("Welcome to Pythonic Project Management")
     project_objects = load_projects(DEFAULT_FILENAME)
 
@@ -36,7 +43,15 @@ def main():
             save_project_filename = f"{get_valid_string("Please enter a filename to save: ")}.txt"
             save_projects(save_project_filename, project_objects)
         elif menu_choice == "D":
-            display_projects(project_objects)
+            incomplete_project_objects = []
+            completed_project_objects = []
+            for project in project_objects:
+                if project.is_completed():
+                    completed_project_objects.append(project)
+                else:
+                    incomplete_project_objects.append(project)
+            display_projects(incomplete_project_objects, "Incomplete Projects:")
+            display_projects(completed_project_objects, "Completed Projects:")
         elif menu_choice == "F":
             filter_projects_by_date(project_objects)
         elif menu_choice == "A":
@@ -56,16 +71,16 @@ def main():
 def load_projects(filename):
     """Load all the projects from a .txt file."""
     project_objects = []
-    with open(filename) as in_file:
+    with open(filename, encoding="utf-8") as in_file:
         in_file.readline()  # Skip the header
         for line in in_file:
             parts = line.split("\t")
             project = Project(
-                parts[0],
-                datetime.strptime(parts[1], "%d/%m/%Y"),
-                int(parts[2]),
-                float(parts[3]),
-                int(parts[4]))
+                parts[0],  # Name
+                datetime.strptime(parts[1], "%d/%m/%Y"),  # Start Date
+                int(parts[2]),  # Priority
+                float(parts[3]),  # Cost Estimate
+                int(parts[4]))  # Completion Percentage
             project_objects.append(project)
     print(f"Loaded {len(project_objects)} projects from {filename}")
     return project_objects
@@ -73,33 +88,26 @@ def load_projects(filename):
 
 def save_projects(filename, project_objects):
     """Prompt the user for a filename and save the projects to that file in .txt."""
-    with open(filename, "w") as out_file:
-        out_file.write(PROJECT_HEADERS)  # Add the headers in the file.
+    with open(filename, "w", encoding="utf-8") as out_file:
+        out_file.writelines(PROJECT_HEADERS)  # Add the headers in the file.
         for project in project_objects:
-            out_file.write(f"{project.name}\t{datetime.strftime(project.start_date, "%d/%m/%Y")}\t{project.priority}\t{project.cost_estimate:.1f}\t{project.completion_percentage}\n")
+            out_file.write(f"{project.name}\t"
+                           f"{datetime.strftime(project.start_date, "%d/%m/%Y")}\t"
+                           f"{project.priority}\t"
+                           f"{project.cost_estimate:.1f}\t"
+                           f"{project.completion_percentage}\n")
 
 
-def display_projects(project_objects):
-    """Display all the incomplete and completed projects."""
-    incomplete_project_objects = []
-    completed_project_objects = []
-    for project in project_objects:
-        if project.completion_percentage == 100:
-            completed_project_objects.append(project)
-        else:
-            incomplete_project_objects.append(project)
-
-    print("Incomplete projects:")
-    for incomplete_project in sorted(incomplete_project_objects, key=attrgetter("priority")):
-        print(f"  {incomplete_project}")
-    print("Completed projects:")
-    for completed_project in sorted(completed_project_objects, key=attrgetter("priority")):
-        print(f"  {completed_project}")
+def display_projects(projects, heading=""):
+    """Display the projects."""
+    print(heading)
+    for project in sorted(projects):
+        print(f"  {project}")
 
 
 def filter_projects_by_date(project_objects):
     """Display all the projects that start after a given date."""
-    date = datetime.strptime(input("Show projects that start after date (dd/mm/yy): "), "%d/%m/%Y")
+    date = get_valid_date("Show projects that start after date (dd/mm/yy): ")
     for project in sorted([project for project in project_objects if project.start_date >= date],
                           key=attrgetter("start_date")):
         print(project)
@@ -109,7 +117,7 @@ def add_project(project_objects):
     """Add a new project."""
     print("Let's add a new project.")
     name = get_valid_string("Name: ")
-    start_date = get_valid_start_date()
+    start_date = get_valid_date("Start date (dd/mm/yy): ")
     priority = get_valid_number("Priority: ", 0, float('inf'), int)
     cost_estimate = get_valid_number("Cost estimate: $", 0, float('inf'), float)
     completion_percentage = get_valid_number("Percent complete: ", 0, 100, int)
@@ -142,14 +150,14 @@ def get_valid_number(prompt, minimum, maximum, number_type):
             else:
                 return input_number
         except ValueError:
-            print(f"Invalid number")
+            print("Invalid number")
 
 
-def get_valid_start_date():
+def get_valid_date(prompt):
     """Prompt the user for a valid start date."""
     while True:
         try:
-            start_date = datetime.strptime(input("Start date (dd/mm/yy): "), "%d/%m/%Y")
+            start_date = datetime.strptime(input(prompt), "%d/%m/%Y")
             return start_date
         except ValueError:
             print("Invalid start date")
