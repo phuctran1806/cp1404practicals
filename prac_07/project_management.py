@@ -15,24 +15,26 @@ MENU = ("- (L)oad projects\n"
         "- (U)pdate project\n"
         "- (Q)uit\n"
         ">>> ")
+PROJECT_HEADERS = "Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n"
 
 
 def main():
     print("Welcome to Pythonic Project Management")
 
-    project_filename = "projects.txt"
-    project_objects = load_projects(project_filename)
+    load_project_filename = "projects.txt"  # Default loading file
+    project_objects = load_projects(load_project_filename)
 
     menu_choice = input(MENU).upper().strip()
     while menu_choice != "Q":
         if menu_choice == "L":
-            project_filename = input("Please enter a filename to load: ")
+            load_project_filename = f"{input("Please enter a filename to load: ")}.txt"
             try:
-                project_objects = load_projects(project_filename)
+                load_project_filename = load_projects(load_project_filename)
             except FileNotFoundError:
-                print(f"{project_filename} not found.")
+                print(f"{load_project_filename} not found.")
         elif menu_choice == "S":
-            print("Save")
+            save_project_filename = f"{input("Please enter a filename to save: ")}.txt"
+            save_projects(save_project_filename, project_objects)
         elif menu_choice == "D":
             display_projects(project_objects)
         elif menu_choice == "F":
@@ -62,6 +64,14 @@ def load_projects(filename):
             project_objects.append(project)
     print(f"Loaded {len(project_objects)} projects from {filename}")
     return project_objects
+
+
+def save_projects(filename, project_objects):
+    """Save all the projects to a .txt file."""
+    with open(filename, "w") as out_file:
+        out_file.write(PROJECT_HEADERS)  # Add the headers in the file.
+        for project in project_objects:
+            out_file.write(f"{project.name}\t{datetime.strftime(project.start_date, "%d/%m/%Y")}\t{project.priority}\t{project.cost_estimate:.1f}\t{project.completion_percentage}\n")
 
 
 def display_projects(project_objects):
