@@ -1,7 +1,7 @@
 """
 Project Management Program
 Estimate: 3 hours
-Actual:
+Actual: 3 days
 """
 from datetime import datetime
 from operator import attrgetter
@@ -110,7 +110,7 @@ def filter_projects_by_date(project_objects):
 
 def add_project(project_objects):
     """Add a new project."""
-    print("Let's add a new project.")
+    print("Let's add a new project")
     name = get_valid_string("Name: ")
     start_date = get_valid_date("Start date (dd/mm/yy): ")
     priority = get_valid_number("Priority: ", 0, float('inf'), int)
