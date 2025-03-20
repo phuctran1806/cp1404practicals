@@ -43,13 +43,8 @@ def main():
             save_project_filename = f"{get_valid_string("Please enter a filename to save: ")}.txt"
             save_projects(save_project_filename, project_objects)
         elif menu_choice == "D":
-            incomplete_project_objects = []
-            completed_project_objects = []
-            for project in project_objects:
-                if project.is_completed():
-                    completed_project_objects.append(project)
-                else:
-                    incomplete_project_objects.append(project)
+            incomplete_project_objects = [project for project in project_objects if not project.is_completed()]
+            completed_project_objects = [project for project in project_objects if project.is_completed()]
             display_projects(incomplete_project_objects, "Incomplete Projects:")
             display_projects(completed_project_objects, "Completed Projects:")
         elif menu_choice == "F":
