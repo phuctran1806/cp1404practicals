@@ -17,6 +17,7 @@ MENU = ("- (L)oad projects\n"
         ">>> ")
 PROJECT_HEADERS = "Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n"
 DEFAULT_FILENAME = "projects.txt"
+ACCEPTING_PROMPTS = ["Y", "Yes"]
 
 
 def main():
@@ -45,6 +46,11 @@ def main():
         else:
             print("Invalid choice")
         menu_choice = input(MENU).upper().strip()
+
+    default_file_saving_choice = input(f"Would you like to save to {DEFAULT_FILENAME}? ")
+    if default_file_saving_choice in ACCEPTING_PROMPTS:
+        save_projects(DEFAULT_FILENAME, project_objects)
+    print("Thank you using custom-built project management software.")
 
 
 def load_projects(filename):
