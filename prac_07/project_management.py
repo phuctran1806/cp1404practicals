@@ -104,9 +104,9 @@ def add_project(project_objects):
     """Add a new project."""
     print("Let's add a new project.")
     name = input("Name: ")
-    start_date = datetime.strptime(input("Start date: "), "%d/%m/%Y")
+    start_date = datetime.strptime(input("Start date (dd/mm/yy): "), "%d/%m/%Y")
     priority = int(input("Priority: "))
-    cost_estimate = float(input("Cost estimate: "))
+    cost_estimate = float(input("Cost estimate: $"))
     completion_percentage = int(input("Percent complete: "))
     new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
     project_objects.append(new_project)
