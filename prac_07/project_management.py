@@ -16,25 +16,23 @@ MENU = ("- (L)oad projects\n"
         "- (Q)uit\n"
         ">>> ")
 PROJECT_HEADERS = "Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n"
+DEFAULT_FILENAME = "projects.txt"
 
 
 def main():
     print("Welcome to Pythonic Project Management")
-
-    load_project_filename = "projects.txt"  # Default loading file
-    project_objects = load_projects(load_project_filename)
+    project_objects = load_projects(DEFAULT_FILENAME)
 
     menu_choice = input(MENU).upper().strip()
     while menu_choice != "Q":
         if menu_choice == "L":
             load_project_filename = f"{input("Please enter a filename to load: ")}.txt"
             try:
-                load_project_filename = load_projects(load_project_filename)
+                project_objects = load_projects(load_project_filename)
             except FileNotFoundError:
                 print(f"{load_project_filename} not found.")
         elif menu_choice == "S":
-            save_project_filename = f"{input("Please enter a filename to save: ")}.txt"
-            save_projects(save_project_filename, project_objects)
+            save_projects(project_objects)
         elif menu_choice == "D":
             display_projects(project_objects)
         elif menu_choice == "F":
@@ -66,9 +64,10 @@ def load_projects(filename):
     return project_objects
 
 
-def save_projects(filename, project_objects):
-    """Save all the projects to a .txt file."""
-    with open(filename, "w") as out_file:
+def save_projects(project_objects):
+    """Prompt the user for a filename and save the projects to that file in .txt."""
+    save_project_filename = f"{input("Please enter a filename to save: ")}.txt"
+    with open(save_project_filename, "w") as out_file:
         out_file.write(PROJECT_HEADERS)  # Add the headers in the file.
         for project in project_objects:
             out_file.write(f"{project.name}\t{datetime.strftime(project.start_date, "%d/%m/%Y")}\t{project.priority}\t{project.cost_estimate:.1f}\t{project.completion_percentage}\n")
@@ -118,9 +117,9 @@ def update_project(project_objects):
     for i, project in enumerate(project_objects):
         print(f"{i} {project}")
 
+    # User choose a project and update its Completion Percentage and Priority.
     chosen_project = project_objects[int(input("Project choice: "))]
     print(chosen_project)
-
     for attribute in ["completion_percentage", "priority"]:
         new_value = input(f"New {attribute.replace('_', ' ').title()}: ").strip()
         if new_value:
