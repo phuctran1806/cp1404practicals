@@ -47,8 +47,9 @@ def main():
             print("Invalid choice")
         menu_choice = input(MENU).upper().strip()
 
-    default_file_saving_choice = input(f"Would you like to save to {DEFAULT_FILENAME}? ")
+    default_file_saving_choice = input(f"Would you like to save to {DEFAULT_FILENAME}? ").title().strip()
     if default_file_saving_choice in ACCEPTING_PROMPTS:
+        print("Save to default file")
         save_projects(DEFAULT_FILENAME, project_objects)
     print("Thank you using custom-built project management software.")
 
