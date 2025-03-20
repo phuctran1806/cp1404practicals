@@ -13,3 +13,7 @@ class Project:
         """Represent a Project object as a string."""
         return f"{self.name}, start: {datetime.strftime(self.start_date, "%d/%m/%Y")}, priority {self.priority}, estimate: ${self.cost_estimate:.2f}, completion: {self.completion_percentage}%"
 
+    def __lt__(self, other):
+        """Determine if this project's priority is less than other project's priority."""
+        return self.priority < other.priority
+
