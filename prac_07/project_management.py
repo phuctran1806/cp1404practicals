@@ -112,12 +112,6 @@ def add_project(project_objects):
     project_objects.append(new_project)
 
 
-def get_updated_value(temporary_value, prompt):
-    """Helper function for update_project() function, which prompt the user for a new value, returning the current value if input is blank."""
-    new_value = input(prompt).strip()
-    return int(new_value) if new_value else temporary_value
-
-
 def update_project(project_objects):
     """Update a project."""
     # Display all the projects with numbers.
@@ -127,8 +121,10 @@ def update_project(project_objects):
     chosen_project = project_objects[int(input("Project choice: "))]
     print(chosen_project)
 
-    chosen_project.completion_percentage = get_updated_value(chosen_project.completion_percentage, "New Percentage: ")
-    chosen_project.priority = get_updated_value(chosen_project.priority, "New Priority: ")
+    for attribute in ["completion_percentage", "priority"]:
+        new_value = input(f"New {attribute.replace('_', ' ').title()}: ").strip()
+        if new_value:
+            setattr(chosen_project, attribute, int(new_value))
 
 
 if __name__ == "__main__":
