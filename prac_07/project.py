@@ -17,3 +17,6 @@ class Project:
         """Determine if this project's priority is less than other project's priority."""
         return self.priority < other.priority
 
+    def is_completed(self):
+        """Determine if this project's priority is completed."""
+        return self.completion_percentage == 100
