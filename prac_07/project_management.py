@@ -27,13 +27,13 @@ def main():
     menu_choice = input(MENU).upper().strip()
     while menu_choice != "Q":
         if menu_choice == "L":
-            load_project_filename = f"{input("Please enter a filename to load: ")}.txt"
+            load_project_filename = f"{get_valid_string("Please enter a filename to load: ")}.txt"
             try:
                 project_objects = load_projects(load_project_filename)
             except FileNotFoundError:
                 print(f"{load_project_filename} not found.")
         elif menu_choice == "S":
-            save_project_filename = f"{input("Please enter a filename to save: ")}.txt"
+            save_project_filename = f"{get_valid_string("Please enter a filename to save: ")}.txt"
             save_projects(save_project_filename, project_objects)
         elif menu_choice == "D":
             display_projects(project_objects)
@@ -47,9 +47,8 @@ def main():
             print("Invalid choice")
         menu_choice = input(MENU).upper().strip()
 
-    default_file_saving_choice = input(f"Would you like to save to {DEFAULT_FILENAME}? ").title().strip()
+    default_file_saving_choice = get_valid_string(f"Would you like to save to {DEFAULT_FILENAME}? ").title().strip()
     if default_file_saving_choice in ACCEPTING_PROMPTS:
-        print("Save to default file")
         save_projects(DEFAULT_FILENAME, project_objects)
     print("Thank you using custom-built project management software.")
 
@@ -109,7 +108,7 @@ def filter_projects_by_date(project_objects):
 def add_project(project_objects):
     """Add a new project."""
     print("Let's add a new project.")
-    name = input("Name: ")
+    name = get_valid_string("Name: ")
     start_date = get_valid_start_date()
     priority = get_valid_number("Priority: ", 0, float('inf'), int)
     cost_estimate = get_valid_number("Cost estimate: $", 0, float('inf'), float)
@@ -155,6 +154,14 @@ def get_valid_start_date():
         except ValueError:
             print("Invalid start date")
 
+
+def get_valid_string(prompt):
+    """Prompt the user for a valid string."""
+    input_string = input(prompt).strip()
+    while not input_string:
+        print("Input cannot be blank.")
+        input_string = input(prompt).strip()
+    return input_string
 
 
 if __name__ == "__main__":
