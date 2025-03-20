@@ -85,7 +85,8 @@ def display_projects(project_objects):
 def filter_projects_by_date(project_objects):
     """Display all the projects that start after a given date."""
     date = datetime.strptime(input("Show projects that start after date (dd/mm/yy): "), "%d/%m/%Y")
-    for project in sorted([project for project in project_objects if project.start_date >= date], key=attrgetter("start_date")):
+    for project in sorted([project for project in project_objects if project.start_date >= date],
+                          key=attrgetter("start_date")):
         print(project)
 
 
@@ -102,7 +103,7 @@ def add_project(project_objects):
 
 
 def get_updated_value(temporary_value, prompt):
-    """Prompt the user for a new value, returning the current value if input is blank."""
+    """Helper function for update_project() function, which prompt the user for a new value, returning the current value if input is blank."""
     new_value = input(prompt).strip()
     return int(new_value) if new_value else temporary_value
 
