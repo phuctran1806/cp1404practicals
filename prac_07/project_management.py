@@ -32,7 +32,8 @@ def main():
             except FileNotFoundError:
                 print(f"{load_project_filename} not found.")
         elif menu_choice == "S":
-            save_projects(project_objects)
+            save_project_filename = f"{input("Please enter a filename to save: ")}.txt"
+            save_projects(save_project_filename, project_objects)
         elif menu_choice == "D":
             display_projects(project_objects)
         elif menu_choice == "F":
@@ -64,10 +65,9 @@ def load_projects(filename):
     return project_objects
 
 
-def save_projects(project_objects):
+def save_projects(filename, project_objects):
     """Prompt the user for a filename and save the projects to that file in .txt."""
-    save_project_filename = f"{input("Please enter a filename to save: ")}.txt"
-    with open(save_project_filename, "w") as out_file:
+    with open(filename, "w") as out_file:
         out_file.write(PROJECT_HEADERS)  # Add the headers in the file.
         for project in project_objects:
             out_file.write(f"{project.name}\t{datetime.strftime(project.start_date, "%d/%m/%Y")}\t{project.priority}\t{project.cost_estimate:.1f}\t{project.completion_percentage}\n")
