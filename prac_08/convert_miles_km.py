@@ -16,7 +16,7 @@ class MilesToKmConverter(App):
         Window.size = (700, 400)
         return self.root
 
-    def handle_conversion(self, input_miles):
+    def convert_miles_to_km(self, input_miles):
         """Converts miles to km when user hit the convert button."""
         try:
             km_value = float(input_miles) * MILES_TO_KM_RATIO
@@ -34,7 +34,6 @@ class MilesToKmConverter(App):
             self.miles_message = f"{value}.0"
         else:
             self.miles_message = f"{new_miles}"
-
 
 
 MilesToKmConverter().run()
