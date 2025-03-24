@@ -28,8 +28,12 @@ class MilesToKmConverter(App):
 
     def handle_increment(self, input_miles, value):
         """Increase or decrease the miles number by 1."""
-        new_miles = float(input_miles) + value
-        self.miles_message = f"{new_miles}"
+        try:
+            new_miles = float(input_miles) + value
+        except ValueError:
+            self.miles_message = f"{value}.0"
+        else:
+            self.miles_message = f"{new_miles}"
 
 
 
