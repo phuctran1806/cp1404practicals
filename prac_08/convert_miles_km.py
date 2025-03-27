@@ -23,8 +23,7 @@ class MilesToKmConverter(App):
         except ValueError:
             self.km_message = "0.0"
         else:
-            integer_part, decimal_part = str(km_value).split(".")
-            self.km_message = f"{integer_part}.{decimal_part[:3]}"  # Only display with 3 decimals
+            self.km_message = str(km_value)
 
     def handle_increment(self, input_miles, value):
         """Increase or decrease the miles number by 1."""
