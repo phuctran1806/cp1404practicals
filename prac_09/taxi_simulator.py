@@ -16,7 +16,7 @@ def main():
     option = input(f"{", ".join(OPTIONS)}\n>>> ").strip().lower()
     while option != "q":
         if option == "c":
-            print("Choose taxi")
+            choose_taxi(taxis)
         elif option == "d":
             print("Drive")
         else:
@@ -34,7 +34,15 @@ def display_taxis(taxis):
         print(f"{i} - {taxi}")
 
 
-
+def choose_taxi(taxis):
+    """Choose a taxi."""
+    print("Taxis available:")
+    display_taxis(taxis)
+    chosen_index = int(input("Choose taxi: "))
+    if chosen_index < 0 or chosen_index >= len(taxis):
+        print("Invalid taxi choice")
+    else:
+        return taxis[chosen_index]
 
 
 
