@@ -2,6 +2,7 @@ import random
 from prac_09.car import Car
 
 class UnreliableCar(Car):
+    """A child class of Car, which has an addition reliability attribute."""
     def __init__(self, name, fuel, reliability):
         """Initialize an UnreliableCar object."""
         super().__init__(name, fuel)
