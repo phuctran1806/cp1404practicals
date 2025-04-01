@@ -16,9 +16,9 @@ def main():
     option = input(f"{", ".join(OPTIONS)}\n>>> ").strip().lower()
     while option != "q":
         if option == "c":
-            choose_taxi(taxis)
+            current_taxi = choose_taxi(taxis)
         elif option == "d":
-            print("Drive")
+            total_trip_cost += drive(current_taxi)
         else:
             print("Invalid option")
         print(f"Bill to date: ${total_trip_cost:.2f}")
@@ -43,6 +43,18 @@ def choose_taxi(taxis):
         print("Invalid taxi choice")
     else:
         return taxis[chosen_index]
+
+def drive(taxi):
+    """Drive a taxi."""
+    if not taxi:
+        print("You need to choose a taxi before you can drive")
+        return 0
+    distance = int(input("Drive how far? "))
+    taxi.start_fare()
+    taxi.drive(distance)
+    cost = taxi.get_fare()
+    print(f"Your {taxi.name} trip cost you ${cost:.2f}")
+    return cost
 
 
 
