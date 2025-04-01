@@ -21,6 +21,7 @@ def main():
             print("Drive")
         else:
             print("Invalid option")
+        print(f"Bill to date: ${total_trip_cost:.2f}")
         option = input(f"{", ".join(OPTIONS)}\n>>> ").strip().lower()
     print(f"Total trip cost: ${total_trip_cost:.2f}")
     print("Taxis are now:")
