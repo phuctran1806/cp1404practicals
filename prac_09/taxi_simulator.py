@@ -3,6 +3,7 @@ from silver_service_taxi import SilverServiceTaxi
 
 OPTIONS = ["q)uit", "c)hoose taxi", "d)rive"]
 
+
 def main():
     taxis = [
         Taxi("Prius", 100),
@@ -44,6 +45,7 @@ def choose_taxi(taxis):
     else:
         return taxis[chosen_index]
 
+
 def drive(taxi):
     """Drive a taxi."""
     if not taxi:
@@ -55,7 +57,6 @@ def drive(taxi):
     cost = taxi.get_fare()
     print(f"Your {taxi.name} trip cost you ${cost:.2f}")
     return cost
-
 
 
 if __name__ == '__main__':
