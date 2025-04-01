@@ -25,11 +25,13 @@ def main():
         option = input(f"{", ".join(OPTIONS)}\n>>> ").strip().lower()
     print(f"Total trip cost: ${total_trip_cost:.2f}")
     print("Taxis are now:")
+    display_taxis(taxis)
+
+
+def display_taxis(taxis):
+    """Display a list of taxis."""
     for i, taxi in enumerate(taxis):
         print(f"{i} - {taxi}")
-
-
-
 
 
 
