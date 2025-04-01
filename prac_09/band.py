@@ -12,3 +12,10 @@ class Band:
     def add(self, musician):
         """Add a musician to the collection of musicians."""
         self.musicians.append(musician)
+
+    def play(self):
+        """Having all the musicians performing."""
+        performance_list = []
+        for musician in self.musicians:
+            performance_list.append(musician.play())
+        return "\n".join(performance_list)
