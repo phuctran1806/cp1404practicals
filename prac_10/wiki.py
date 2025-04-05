@@ -14,6 +14,6 @@ while page_title:
     else:
         print(wikipedia.summary(page))
         print(page.url)
-    page_title = input("Enter page title: ")
+    page_title = input("\nEnter page title: ")
 
 print("Thank you.")
