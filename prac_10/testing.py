@@ -36,6 +36,9 @@ def run_tests():
     # Hint: "-".join(["yo", "yo"] -> "yo-yo"
 
     # assert test with custom message,
+    assert repeat_string("Phuc", 3) == "Phuc Phuc Phuc"
+    assert repeat_string("Hello, world!", 3) == "Hello, world! Hello, world! Hello, world!"
+    print("All repeat_string() function tests passed!")
     # used to see if Car's init method sets the odometer correctly
     # this should pass (no output)
     car = Car()
