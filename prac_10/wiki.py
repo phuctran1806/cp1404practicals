@@ -1,5 +1,4 @@
 import wikipedia
-from pyexpat import features
 
 page_title = input("Enter page title: ")
 while page_title:
