@@ -73,6 +73,8 @@ def phrase_to_sentence(phrase: str):
     'Hello.'
     >>> phrase_to_sentence('It is an ex parrot.')
     'It is an ex parrot.'
+    >>> phrase_to_sentence('this is another useful test')
+    'This is another useful test.'
     """
     phrase += "." if phrase[-1] != "." else ""
     return phrase.capitalize()
